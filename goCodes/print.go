@@ -6,6 +6,7 @@ var (
     version  = "0.8"
     build    = "Custom"
     codename = "Post Apocalypse"
+    whythis = "code style"
     intro    = "A stable and unbreakable connection for everyone."
 )
 
