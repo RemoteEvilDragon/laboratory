@@ -7,7 +7,7 @@ var (
     build    = "Custom"
     codename = "Post Apocalypse"
     whythis = "code style"
-    whythat = "portable git test"
+    tryAgain = "portable git testss"
     intro    = "A stable and unbreakable connection for everyone."
 )
 
