@@ -36,6 +36,7 @@ local os = require "os"
 local table = require "table";
 local concat = table.concat;
 
+--firstly need luarocks
 local lpeg = require "lpeg";
 local P = require "posix";
 

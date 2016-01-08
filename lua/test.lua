@@ -30,7 +30,7 @@ _t("abc",3),
 
 _t("aaa",{2,"a",_t("b",{"c",1,1})} ),
 
-3,
+false,
 
 4}
 local function easytable2json(list)
@@ -38,7 +38,7 @@ local function easytable2json(list)
         local tm = {}
         for k,v in pairs(t) do
             if type(v) ~= "table" then--value k
-                if type(v) == "number" then
+                if type(v) == "number" or type(v) == "boolean" then
                     table.insert(tm,tostring(v))
                 else
                     table.insert(tm,"\""..tostring(v).."\"")
@@ -71,4 +71,4 @@ local function easytable2json(list)
     str = string.sub(str,1,-2)
     return "{"..str.."}"
 end
-print("json is "..easytable2json(jsonString))
+print("json is "..easytable2json(t))
