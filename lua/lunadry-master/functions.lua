@@ -282,7 +282,7 @@ function import(moduleName, currentModuleName)
     return require(moduleFullName)
 end
 
-function handler(obj, method)
+function handler(obj, method)--add one parmeter into parmeter list.
     return function(...)
         return method(obj, ...)
     end
