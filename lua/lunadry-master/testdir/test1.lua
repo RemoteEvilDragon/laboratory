@@ -7,13 +7,13 @@ local function len (list)
 end
 local function _t (k, v)
   assert(type(k) == "string", "Parameter k must be a string type!!")
-
   return {
     [k] = v,
 
+
+
   }
 end
-
 local jsonString = {
   _t("shaderName", "customTest"),
   _t("vert", "res/shaders/test_vert.c"),
@@ -23,15 +23,16 @@ local jsonString = {
       768,
       0,
 
+
+
     }),
 
-}
 
+
+}
 local t = {
   1,
-
   "ab",
-
   _t("name", {
       "athen",
       1,
@@ -40,12 +41,14 @@ local t = {
           1,
           2,
 
+
+
         }),
 
+
+
     }),
-
   _t("abc", 3),
-
   _t("aaa", {
       2,
       "a",
@@ -54,13 +57,17 @@ local t = {
           1,
           1,
 
+
+
         }),
 
+
+
     }),
-
   false,
-
   4,
+
+
 
 }
 local function easytable2json (list)
@@ -78,7 +85,6 @@ local function easytable2json (list)
         --real k
         --unevelop brackets here
         assert(len(v) == 1, "invalid data format!!!")
-
         for kk, vv in pairs(v) do
           local str = ""
           str = str .. "\"" .. kk .. "\"" .. ":"
@@ -98,7 +104,6 @@ local function easytable2json (list)
     end
     return "[" .. table.concat(tm, ",") .. "]"
   end
-
   local str = string.sub(innerFunc(list), 2)
   str = string.sub(str, 1, -2)
   return "{" .. str .. "}"

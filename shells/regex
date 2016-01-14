@@ -1,0 +1,3 @@
+Historic versions of the grep utility also supported the flags [-ruy]. 
+This implementation supports
+those options; however, their use is strongly discouraged.

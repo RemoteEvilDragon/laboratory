@@ -1,23 +1,6 @@
 #!/usr/bin/env lua
 
---    Lunadry -- A code formatter.
---    Copyright (C) 2014 Patrick Joseph Donnelly
---
---    This program is free software: you can redistribute it and/or modify
---    it under the terms of the GNU General Public License as published by
---    the Free Software Foundation, either version 3 of the License, or
---    (at your option) any later version.
---
---    This program is distributed in the hope that it will be useful,
---    but WITHOUT ANY WARRANTY; without even the implied warranty of
---    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
---    GNU General Public License for more details.
---
---    You should have received a copy of the GNU General Public License
---    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-local VERSION = "Lunadry v0.1.0 Copyright (C) 2012-2015 Patrick Donnelly"
-
+local foramtter = {}
 local DEBUG = false
 local IN_PLACE = true
 
@@ -36,14 +19,9 @@ local os = require "os"
 local table = require "table"
 local concat = table.concat
 
-<<<<<<< HEAD:lua/lunadry-master/lunadry
-local lpeg = require "lpeg";
-local P = require "posix";
-=======
 --firstly need luarocks
 local lpeg = require "lpeg"
 local P = require "posix"
->>>>>>> d3a0340c2eb20c17bfb5642d3dfd92cbf74e8a9f:lua/lunadry-master/lunadry.lua
 
 local function luafilter (...)
   local P = lpeg.P
@@ -356,24 +334,6 @@ local function luafilter (...)
 end
 
 local function checkbytecode (f1, f2)
-  -- batrick@batbytes:~$ luac -l -p -
-  -- foo = function () end
-  --
-  -- main <stdin:0,0> (3 instructions, 12 bytes at 0x172c230)
-  -- 0+ params, 2 slots, 0 upvalues, 0 locals, 1 constant, 1 function
-  --         1       [1]     CLOSURE         0 0     ; 0x172c410
-  --         2       [1]     SETGLOBAL       0 -1    ; foo
-  --         3       [1]     RETURN          0 1
-  --
-  -- function <stdin:1,1> (1 instruction, 4 bytes at 0x172c410)
-  -- 0 params, 2 slots, 0 upvalues, 0 locals, 0 constants, 0 functions
-  --        1       [1]     RETURN          0 1
-  --
-  -- We filter out everything but the opcodes and the lines specifying the
-  -- function statistics (# of parameters, upvalues, etc.). We also remove CLOSURE
-  -- opcodes because they include a runtime pointer address which changes across
-  -- luac invocations.
-
   local pid = P.fork()
   if pid == 0 then
     local template = [=[
@@ -391,129 +351,104 @@ local function checkbytecode (f1, f2)
   repeat
     wpid, status, n = P.wait(pid, 0)
   until pid == wpid
-  print "status is: "
-  print(status)
-  print "n is: "
-  print(n)
   if status == "exited" and n ~= 0 then
     io.stderr:write(("WARNING: input file '%s' and output file '%s' have different bytecode\n"):format(f1, f2))
   end
 end
 
-local function main (...)
-<<<<<<< HEAD:lua/lunadry-master/lunadry
-    local LONGOPT_VERSION = "\x01"
-    local short = "dhi"
-    local long = {
-        {"debug", "none", "d"},
-        {"help", "none", "h"},
-        {"in-place", "none", "i"},
-        {"version", "none", LONGOPT_VERSION},
-    }
-
-    local last = 1
-    for r, optarg, optind, li in P.getopt(arg, short, long) do
-        if r == "?" then
-            io.stderr:write(("unrecognized option: %s\n"):format(arg[last]))
-            os.exit(1)
-        elseif r == "d" then
-            DEBUG = true
-        elseif r == "h" then
-            io.stdout:write(("usage: %s [-dhi] [--in-place] file1 [file2 [...]]\n"):format(arg[0]))
-            os.exit(0)
-        elseif r == "i" then
-            IN_PLACE = true
-        elseif r == LONGOPT_VERSION then
-            io.stdout:write(VERSION, "\n")
-            os.exit(0)
-        end
-        last = optind
-=======
-  -- local LONGOPT_VERSION = "\x01"
-  -- local short = "dhi"
-  -- local long = {
-  --     {"debug", "none", "d"},
-  --     {"help", "none", "h"},
-  --     {"in-place", "none", "i"},
-  --     {"version", "none", LONGOPT_VERSION},
-  -- }
-
-  local last = 1
-  -- for r, optarg, optind, li in P.getopt(arg, short, long) do
-  --     if r == "?" then
-  --         io.stderr:write(("unrecognized option: %s\n"):format(arg[last]))
-  --         os.exit(1)
-  --     elseif r == "d" then
-  --         DEBUG = true
-  --     elseif r == "h" then
-  --         io.stdout:write(("usage: %s [-dhi] [--in-place] file1 [file2 [...]]\n"):format(arg[0]))
-  --         os.exit(0)
-  --     elseif r == "i" then
-  --         IN_PLACE = true
-  --     elseif r == LONGOPT_VERSION then
-  --         io.stdout:write(VERSION, "\n")
-  --         os.exit(0)
-  --     end
-  --     last = optind
-  -- end
-  -- if last > #arg then
-  --     table.insert(arg, "-")
-  --     last = #arg
-  -- end
-
+function foramtter:filter (path)
   local lua = luafilter()
   local function filter (input)
     local filtered, err = lua:match(input)
     if not filtered then
       io.stderr:write(("could not filter: %s\n"):format(err))
->>>>>>> d3a0340c2eb20c17bfb5642d3dfd92cbf74e8a9f:lua/lunadry-master/lunadry.lua
+      print(path)
     end
     return filtered
   end
-  for i = last, #arg do
-    local path = arg[i]
-    local f, err
-    if path == "-" then
-      f = io.stdin
-    else
-      f, err = io.open(path)
-    end
-    if f then
-      local input, err = f:read "*a"
-      if input then
-        local filtered, err = filter(input)
-        if filtered then
-          local outpath = path .. ".lunadry"
-          local out = io.open(outpath, "w")
-          if out then
-            local _, err = out:write(filtered)
+  -- for i = 1, #arg do
+  -- local path = arg[i]
+  local f, err
+  if path == "-" then
+    f = io.stdin
+  else
+    f, err = io.open(path)
+  end
+  -- print "formatter received path is :"
+  -- print(path)
+
+  if f then
+    local input, err = f:read "*a"
+    if input then
+      local filtered, err = filter(input)
+      if filtered then
+        local outpath = path .. ".lunadry"
+        local out = io.open(outpath, "w")
+        if out then
+          local _, err = out:write(filtered)
+          if err then
+            io.stderr:write(("could not write '%s': %s\n"):format(outpath, err))
+          end
+          out:close()
+          if path ~= "-" then
+            checkbytecode(path, outpath)
+          end
+          if IN_PLACE and path ~= "-" then
+            local _, err = os.rename(outpath, path)
             if err then
-              io.stderr:write(("could not write '%s': %s\n"):format(outpath, err))
+              io.stderr:write(("could not rename '%s' to '%s': %s\n"):format(outpath, path, err))
             end
-            out:close()
-            if path ~= "-" then
-              checkbytecode(path, outpath)
-            end
-            if IN_PLACE and path ~= "-" then
-              local _, err = os.rename(outpath, path)
-              if err then
-                io.stderr:write(("could not rename '%s' to '%s': %s\n"):format(outpath, path, err))
-              end
-            end
-          else
-            io.stderr:write(("could not open '%s': %s\n"):format(outpath, err))
           end
         else
-          io.stderr:write(("could not filter '%s': %s\n"):format(path, err))
+          io.stderr:write(("could not open '%s': %s\n"):format(outpath, err))
         end
       else
-        io.stderr:write(("could not read '%s': %s\n"):format(path, err))
+        io.stderr:write(("could not filter '%s': %s\n"):format(path, err))
       end
-      f:close()
     else
-      io.stderr:write(("could not open '%s': %s\n"):format(path, err))
+      io.stderr:write(("could not read '%s': %s\n"):format(path, err))
+    end
+    f:close()
+  else
+    io.stderr:write(("could not open '%s': %s\n"):format(path, err))
+  end
+  -- end
+  return true
+end
+
+local lfs = require "lfs"
+
+function string.endsWith (input, suffix)
+  local len = string.len(suffix)
+  if string.len(input) >= len then
+    if string.sub(input, -len) == suffix then
+      return true
+    end
+  end
+  return false
+end
+
+lfs.iterDir = function (path)
+  for file in lfs.dir(path) do
+    if file ~= "." and file ~= ".." then
+      local newPath = path .. "/" .. file
+      if lfs.attributes(newPath).mode == "directory" then
+        lfs.iterDir(newPath)
+      end
+
+      if string.endsWith(newPath, 'lua') then
+        if foramtter:filter(newPath) then
+          print("Formatter file: " .. newPath .. " successed!")
+        end
+      end
     end
   end
 end
 
-return main(...)
+local function main (...)
+  lfs.iterDir(arg[1])
+end
+
+main(...)
+
+return foramtter

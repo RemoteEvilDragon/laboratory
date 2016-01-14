@@ -1,0 +1,5 @@
+echo '#!/bin/bash' >program
+for ((i=1;i<=992;i++)) do
+   echo "echo $i" >>program
+done
+chmod +x program
