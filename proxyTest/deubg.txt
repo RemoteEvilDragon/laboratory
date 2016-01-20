@@ -1,0 +1,75 @@
+== Info: Rebuilt URL to: www.youtube.com/
+== Info:   Trying 224.0.0.1...
+== Info: Connected to www.youtube.com (127.0.0.1) port 80 (#0)
+=> Send header, 80 bytes (0x50)
+0000: 48 45 41 44 20 2f 20 48 54 54 50 2f 31 2e 31 0d HEAD / HTTP/1.1.
+0010: 0a 48 6f 73 74 3a 20 77 77 77 2e 79 6f 75 74 75 .Host: www.youtu
+0020: 62 65 2e 63 6f 6d 0d 0a 55 73 65 72 2d 41 67 65 be.com..User-Age
+0030: 6e 74 3a 20 63 75 72 6c 2f 37 2e 34 33 2e 30 0d nt: curl/7.43.0.
+0040: 0a 41 63 63 65 70 74 3a 20 2a 2f 2a 0d 0a 0d 0a .Accept: */*....
+<= Recv header, 32 bytes (0x20)
+0000: 48 54 54 50 2f 31 2e 31 20 33 30 31 20 4d 6f 76 HTTP/1.1 301 Mov
+0010: 65 64 20 50 65 72 6d 61 6e 65 6e 74 6c 79 0d 0a ed Permanently..
+<= Recv header, 37 bytes (0x25)
+0000: 44 61 74 65 3a 20 54 75 65 2c 20 31 39 20 4a 61 Date: Tue, 19 Ja
+0010: 6e 20 32 30 31 36 20 30 34 3a 31 31 3a 30 34 20 n 2016 04:11:04 
+0020: 47 4d 54 0d 0a                                  GMT..
+<= Recv header, 22 bytes (0x16)
+0000: 53 65 72 76 65 72 3a 20 67 77 69 73 65 67 75 79 Server: gwiseguy
+0010: 2f 32 2e 30 0d 0a                               /2.0..
+<= Recv header, 99 bytes (0x63)
+0000: 58 2d 58 53 53 2d 50 72 6f 74 65 63 74 69 6f 6e X-XSS-Protection
+0010: 3a 20 31 3b 20 6d 6f 64 65 3d 62 6c 6f 63 6b 3b : 1; mode=block;
+0020: 20 72 65 70 6f 72 74 3d 68 74 74 70 73 3a 2f 2f  report=https://
+0030: 77 77 77 2e 67 6f 6f 67 6c 65 2e 63 6f 6d 2f 61 www.google.com/a
+0040: 70 70 73 65 72 76 65 2f 73 65 63 75 72 69 74 79 ppserve/security
+0050: 2d 62 75 67 73 2f 6c 6f 67 2f 79 6f 75 74 75 62 -bugs/log/youtub
+0060: 65 0d 0a                                        e..
+<= Recv header, 111 bytes (0x6f)
+0000: 50 33 50 3a 20 43 50 3d 22 54 68 69 73 20 69 73 P3P: CP="This is
+0010: 20 6e 6f 74 20 61 20 50 33 50 20 70 6f 6c 69 63  not a P3P polic
+0020: 79 21 20 53 65 65 20 68 74 74 70 3a 2f 2f 73 75 y! See http://su
+0030: 70 70 6f 72 74 2e 67 6f 6f 67 6c 65 2e 63 6f 6d pport.google.com
+0040: 2f 61 63 63 6f 75 6e 74 73 2f 61 6e 73 77 65 72 /accounts/answer
+0050: 2f 31 35 31 36 35 37 3f 68 6c 3d 65 6e 20 66 6f /151657?hl=en fo
+0060: 72 20 6d 6f 72 65 20 69 6e 66 6f 2e 22 0d 0a    r more info."..
+<= Recv header, 36 bytes (0x24)
+0000: 4c 6f 63 61 74 69 6f 6e 3a 20 68 74 74 70 73 3a Location: https:
+0010: 2f 2f 77 77 77 2e 79 6f 75 74 75 62 65 2e 63 6f //www.youtube.co
+0020: 6d 2f 0d 0a                                     m/..
+<= Recv header, 19 bytes (0x13)
+0000: 43 6f 6e 74 65 6e 74 2d 4c 65 6e 67 74 68 3a 20 Content-Length: 
+0010: 30 0d 0a                                        0..
+<= Recv header, 40 bytes (0x28)
+0000: 43 6f 6e 74 65 6e 74 2d 54 79 70 65 3a 20 74 65 Content-Type: te
+0010: 78 74 2f 68 74 6d 6c 3b 20 63 68 61 72 73 65 74 xt/html; charset
+0020: 3d 75 74 66 2d 38 0d 0a                         =utf-8..
+<= Recv header, 33 bytes (0x21)
+0000: 58 2d 43 6f 6e 74 65 6e 74 2d 54 79 70 65 2d 4f X-Content-Type-O
+0010: 70 74 69 6f 6e 73 3a 20 6e 6f 73 6e 69 66 66 0d ptions: nosniff.
+0020: 0a                                              .
+<= Recv header, 25 bytes (0x19)
+0000: 43 61 63 68 65 2d 43 6f 6e 74 72 6f 6c 3a 20 6e Cache-Control: n
+0010: 6f 2d 63 61 63 68 65 0d 0a                      o-cache..
+<= Recv header, 40 bytes (0x28)
+0000: 45 78 70 69 72 65 73 3a 20 54 75 65 2c 20 32 37 Expires: Tue, 27
+0010: 20 41 70 72 20 31 39 37 31 20 31 39 3a 34 34 3a  Apr 1971 19:44:
+0020: 30 36 20 45 53 54 0d 0a                         06 EST..
+<= Recv header, 68 bytes (0x44)
+0000: 53 65 74 2d 43 6f 6f 6b 69 65 3a 20 59 53 43 3d Set-Cookie: YSC=
+0010: 4c 68 75 49 69 5a 73 78 72 74 6b 3b 20 70 61 74 LhuIiZsxrtk; pat
+0020: 68 3d 2f 3b 20 64 6f 6d 61 69 6e 3d 2e 79 6f 75 h=/; domain=.you
+0030: 74 75 62 65 2e 63 6f 6d 3b 20 68 74 74 70 6f 6e tube.com; httpon
+0040: 6c 79 0d 0a                                     ly..
+<= Recv header, 122 bytes (0x7a)
+0000: 53 65 74 2d 43 6f 6f 6b 69 65 3a 20 56 49 53 49 Set-Cookie: VISI
+0010: 54 4f 52 5f 49 4e 46 4f 31 5f 4c 49 56 45 3d 76 TOR_INFO1_LIVE=v
+0020: 5a 76 39 50 31 42 30 52 4f 49 3b 20 70 61 74 68 Zv9P1B0ROI; path
+0030: 3d 2f 3b 20 64 6f 6d 61 69 6e 3d 2e 79 6f 75 74 =/; domain=.yout
+0040: 75 62 65 2e 63 6f 6d 3b 20 65 78 70 69 72 65 73 ube.com; expires
+0050: 3d 53 75 6e 2c 20 31 38 2d 53 65 70 2d 32 30 31 =Sun, 18-Sep-201
+0060: 36 20 31 36 3a 30 34 3a 30 34 20 47 4d 54 3b 20 6 16:04:04 GMT; 
+0070: 68 74 74 70 6f 6e 6c 79 0d 0a                   httponly..
+<= Recv header, 2 bytes (0x2)
+0000: 0d 0a                                           ..
+== Info: Connection #0 to host www.youtube.com left intact

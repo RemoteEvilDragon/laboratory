@@ -1,0 +1,24 @@
+== Info: Rebuilt URL to: github.com/
+== Info:   Trying 224.0.0.1...
+== Info: Connected to github.com (127.0.0.1) port 80 (#0)
+=> Send header, 74 bytes (0x4a)
+0000: 47 45 54 20 2f 20 48 54 54 50 2f 31 2e 31 0d 0a GET / HTTP/1.1..
+0010: 48 6f 73 74 3a 20 67 69 74 68 75 62 2e 63 6f 6d Host: github.com
+0020: 0d 0a 55 73 65 72 2d 41 67 65 6e 74 3a 20 63 75 ..User-Agent: cu
+0030: 72 6c 2f 37 2e 34 33 2e 30 0d 0a 41 63 63 65 70 rl/7.43.0..Accep
+0040: 74 3a 20 2a 2f 2a 0d 0a 0d 0a                   t: */*....
+<= Recv header, 32 bytes (0x20)
+0000: 48 54 54 50 2f 31 2e 31 20 33 30 31 20 4d 6f 76 HTTP/1.1 301 Mov
+0010: 65 64 20 50 65 72 6d 61 6e 65 6e 74 6c 79 0d 0a ed Permanently..
+<= Recv header, 19 bytes (0x13)
+0000: 43 6f 6e 74 65 6e 74 2d 6c 65 6e 67 74 68 3a 20 Content-length: 
+0010: 30 0d 0a                                        0..
+<= Recv header, 31 bytes (0x1f)
+0000: 4c 6f 63 61 74 69 6f 6e 3a 20 68 74 74 70 73 3a Location: https:
+0010: 2f 2f 67 69 74 68 75 62 2e 63 6f 6d 2f 0d 0a    //github.com/..
+<= Recv header, 19 bytes (0x13)
+0000: 43 6f 6e 6e 65 63 74 69 6f 6e 3a 20 63 6c 6f 73 Connection: clos
+0010: 65 0d 0a                                        e..
+<= Recv header, 2 bytes (0x2)
+0000: 0d 0a                                           ..
+== Info: Closing connection 0
