@@ -36,9 +36,14 @@ local os = require "os"
 local table = require "table"
 local concat = table.concat
 
+<<<<<<< HEAD:lua/lunadry-master/lunadry
+local lpeg = require "lpeg";
+local P = require "posix";
+=======
 --firstly need luarocks
 local lpeg = require "lpeg"
 local P = require "posix"
+>>>>>>> d3a0340c2eb20c17bfb5642d3dfd92cbf74e8a9f:lua/lunadry-master/lunadry.lua
 
 local function luafilter (...)
   local P = lpeg.P
@@ -396,6 +401,34 @@ local function checkbytecode (f1, f2)
 end
 
 local function main (...)
+<<<<<<< HEAD:lua/lunadry-master/lunadry
+    local LONGOPT_VERSION = "\x01"
+    local short = "dhi"
+    local long = {
+        {"debug", "none", "d"},
+        {"help", "none", "h"},
+        {"in-place", "none", "i"},
+        {"version", "none", LONGOPT_VERSION},
+    }
+
+    local last = 1
+    for r, optarg, optind, li in P.getopt(arg, short, long) do
+        if r == "?" then
+            io.stderr:write(("unrecognized option: %s\n"):format(arg[last]))
+            os.exit(1)
+        elseif r == "d" then
+            DEBUG = true
+        elseif r == "h" then
+            io.stdout:write(("usage: %s [-dhi] [--in-place] file1 [file2 [...]]\n"):format(arg[0]))
+            os.exit(0)
+        elseif r == "i" then
+            IN_PLACE = true
+        elseif r == LONGOPT_VERSION then
+            io.stdout:write(VERSION, "\n")
+            os.exit(0)
+        end
+        last = optind
+=======
   -- local LONGOPT_VERSION = "\x01"
   -- local short = "dhi"
   -- local long = {
@@ -433,6 +466,7 @@ local function main (...)
     local filtered, err = lua:match(input)
     if not filtered then
       io.stderr:write(("could not filter: %s\n"):format(err))
+>>>>>>> d3a0340c2eb20c17bfb5642d3dfd92cbf74e8a9f:lua/lunadry-master/lunadry.lua
     end
     return filtered
   end

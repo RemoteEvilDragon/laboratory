@@ -108,4 +108,6 @@ local function easytable2json (list)
   str = string.sub(str, 1, -2)
   return "{" .. str .. "}"
 end
+
+  
 print("json is " .. easytable2json(t))
