@@ -1,38 +1,39 @@
+#-*- coding:utf-8 -*-
 import xlrd
 import xml.etree.ElementTree as ET
 import os
 import shutil
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 def transfer(_file):
-	output_file = ET.Element('Guankas')
+	output_file = ET.Element('Musics')
 	book = xlrd.open_workbook(_file)
 	sh = book.sheet_by_index(0)
 	for rx in range(sh.nrows):
 		if rx <= 1:
 			pass
 		else:
-			subEle = ET.SubElement(output_file,'Guanka')
+			subEle = ET.SubElement(output_file,'music')
 			for cx in range(sh.ncols):
 				value = sh.cell_value(rowx=rx, colx=cx)
 				try:
 					value = int(value)
 				except ValueError:
 					pass
-				subEle.set(sh.cell_value(rowx=1, colx=cx),str(value))
+
+				subEle.set(sh.cell_value(rowx=1, colx=cx),unicode(value).encode('utf8'))
+
 	output_path = os.path.dirname(_file)+"/"+sh.name+".xml"
 	print output_path
-	ET.ElementTree(output_file).write(output_path)
+
+	ET.ElementTree(output_file).write(output_path,encoding="UTF-8",xml_declaration=True)
 	subDirectory = os.path.basename(os.path.dirname(_file))
-	shutil.copy(output_path,des_path+"/"+subDirectory+"Mode/")
+	shutil.copy(output_path,des_path+"/MusicConfig.xml")
 
-root_path = os.path.join(os.getcwd(),"../../project_bandari/resource/res/dataConfigs/specified")
+root_path = os.path.join(os.getcwd(),"../../project_bandari/resource/res/dataConfigs/musicProperty")
 root_path = os.path.abspath(root_path)
-
-# remove old files here.
-# print root_path
-# print os.path.exists(root_path)
-# print os.path.basename(root_path+"/ddd.xml")
-# print os.path.dirname(root_path+"/ddd.xml")
 
 des_path = os.path.join(os.getcwd(),"../../Bandari/insect/res/config/musiConfig")
 des_path = os.path.abspath(des_path)
