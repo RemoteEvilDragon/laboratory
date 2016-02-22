@@ -3,9 +3,10 @@ import xlrd
 import xml.etree.ElementTree as ET
 import os
 import shutil
+
 import sys
 reload(sys)
-sys.setdefaultencoding('utf-8')
+sys.setdefaultencoding('utf8')
 
 def transfer(_file):
 	output_file = ET.Element('Musics')

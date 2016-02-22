@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	conn, err := net.Dial("tcp", "localhost:50000")
+	conn, err := net.Dial("tcp", "27.126.181.90:50000")
 	if err != nil {
 		//No connection could be made because the target machine actively refused it.
 		fmt.Println("Error dialing", err.Error())
