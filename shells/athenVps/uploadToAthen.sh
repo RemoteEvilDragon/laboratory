@@ -42,3 +42,4 @@ ftp -n -i $SERVER <<EOF
 	${list[*]}
 	exit
 EOF
+
