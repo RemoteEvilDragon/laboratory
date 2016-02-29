@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 USERNAME="athenking"
 PASSWORD="freedom"
 SERVER="27.126.181.90"
