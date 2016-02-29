@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
-	"io"
 	"net"
 	"os"
 	"time"
+	"bufio"
 )
 
 func main() {
@@ -29,7 +29,7 @@ func main() {
 
 func doServerStuff(conn net.Conn) {
 	buf := make([]byte, 512)
-	_, err := conn.Read(buf)
+	n, err := conn.Read(buf)
 	if err != nil {
 		fmt.Println("Error readingggg", err.Error())
 		return
@@ -38,16 +38,13 @@ func doServerStuff(conn net.Conn) {
 	now := time.Now()
 	logFile := fmt.Sprintf("%d_%d_%d.log", now.Year(), now.Month(), now.Day())
 
-	fout, err := os.Create(logFile)
+	fo, err := os.Create(logFile)
 	if err != nil {
 		fmt.Println(logFile, err)
 		return
 	}
 
-	//msg := fmt.Sprintf("%v\n", string(buf))
-	// fmt.Println(msg)
-
-	io.WriteString(fout, string(buf))
-
-	defer fout.Close()
+	w := bufio.NewWriter(fo)
+	w.Write(buf[:n])
+	w.Flush()
 }
