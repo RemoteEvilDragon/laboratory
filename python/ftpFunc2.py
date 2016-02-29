@@ -9,6 +9,8 @@ password="freedom"
 myFtp = ftplib.FTP(server,username,password)
 myPath = "./testUpload"
 
+#no exception handling mechanism:like when network is offline.
+
 def uploadDir(path):
 	files = os.listdir(path)
 	os.chdir(path)

@@ -2,6 +2,19 @@ import xlrd
 import xml.etree.ElementTree as ET
 import os
 import shutil
+import subprocess
+
+def CALL(cmd):
+	p=subprocess.Popen(cmd, shell=True)  
+	a = p.wait()
+	if a != 0 :
+		print ("An error occured when call command : %s , STOPPED!!!"%cmd)
+		exit(1)
+	return 0
+
+
+CALL("cd ~/Desktop/project_bandari")
+CALL("git pull")
 
 def transfer(_file):
 	output_file = ET.Element('Guankas')
