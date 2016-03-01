@@ -4,7 +4,7 @@
 
 import SocketServer
 
-class MyTcpHandler(SocketServer.BaseRequestHandler):
+class MyTcpHandler(SocketServer.StreamRequestHandler):
 	def handle(self):
 		self.data = self.rfile.readline().strip()
 
