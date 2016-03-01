@@ -21,8 +21,15 @@ filepath = sys.path[0]
 from PTlib.utils import *
 
 
+is_Release_InHouse = False
+is_Release_InHouse = True
+
 # 首先读取配置文件
-configFilePath = os.path.join(filepath,'build_config.json')
+if not is_Release_InHouse:
+	configFilePath = os.path.join(filepath,'build_config.json')
+else:
+	configFilePath = os.path.join(filepath,'build_config_InHouse.json')
+
 print('读取打包配置文件: '+configFilePath)
 config = loadJson(configFilePath)
 if config == None :
@@ -43,10 +50,14 @@ ProjName = config['Name']
 
 # 备份KeychainAccess.plist
 kcaPlistPath = os.path.join(filepath,'../../../Bandari/insect/frameworks/runtime-src/proj.ios_mac/KeychainAccess.plist')
-kcaPlistBakPath = os.path.join(filepath,'KeychainAccess.plist.bak')
-kcaPlistReleasePath = os.path.join(filepath,'KeychainAccess.plist')
-CALL("cp -rf %s %s"%(kcaPlistPath,kcaPlistBakPath))
-CALL("cp -rf %s %s"%(kcaPlistReleasePath,kcaPlistPath))
+
+if not is_Release_InHouse:
+	kcaPlistConfigPath = os.path.join(filepath,'keychain/KeychainAccess.plist')
+else:
+	kcaPlistConfigPath = os.path.join(filepath,'keychain/KeychainAccess_InHouse.plist')
+
+# CALL("cp -rf %s %s"%(kcaPlistPath,kcaPlistBakPath))
+CALL("cp -rf %s %s"%(kcaPlistConfigPath,kcaPlistPath))
 
 strbuild = "xcodebuild -project \"%s\" -configuration \"%s\" -target \"%s\" CODE_SIGN_IDENTITY=\"%s\" PROVISIONING_PROFILE=\"%s\""%(ProjectPath,BuildType,Target,CodeSigningIdentity,ProvisioningProfile)
 # print strbuild

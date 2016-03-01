@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 import ftplib
 import os
+import sys
 
 server="27.126.181.90"
 username="athenking"
 password="freedom"
 
 myFtp = ftplib.FTP(server,username,password)
-myPath = "./testUpload"
+newDir = sys.argv[1]
 
 #no exception handling mechanism:like when network is offline.
 
@@ -33,4 +34,7 @@ def uploadDir(path):
 	myFtp.cwd('..')
 	os.chdir('..')
 
-uploadDir(os.path.join(myPath))
+
+myFtp.mkd(newDir)
+myFtp.cwd(newDir)
+uploadDir(os.path.join(newDir))
