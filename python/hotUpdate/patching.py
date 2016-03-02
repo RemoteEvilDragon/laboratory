@@ -8,9 +8,19 @@ import os
 import io
 import shutil
 from hashlib import md5
+import uploadToFtp
 
 projectPath = "/Users/putao/Desktop/Logis"
 ignoreList=[".DS_Store"]
+importList=["src","res"]
+
+newDir = "update"
+os.mkdir(newDir)
+
+os.chdir(newDir)
+os.mkdir("files")
+os.mkdir("version")
+os.chdir("..")
 
 def isIgnored(item):
 	for s in ignoreList:
@@ -31,11 +41,10 @@ def generateMd5(path,_dict):
 				b_file.close()
 
 				key = fpath[len(projectPath)+1:]
-				print key
+				# print key
 				_dict[key] = m.hexdigest()
 			elif os.path.isdir(fpath):
 				generateMd5(fpath,_dict)
-
 
 version_manifest = {
 	"packageUrl":"http://27.126.181.90/update/files/",
@@ -49,24 +58,33 @@ for (k,v) in version_manifest.items():
 	project_manifest[k]=v
 project_manifest["assets"] = dict()
 
-
 root_files = os.listdir(projectPath)
 for f in root_files:
 	if f=="src" or f =="res":
 		generateMd5(os.path.join(projectPath,f),project_manifest["assets"])
 
 
-os.chdir("/Users/putao/Desktop/laboratory/python")
+os.chdir("/Users/putao/Desktop/laboratory/python/hotUpdate")
 # 输出version.manifest文件
+
 json_str = json.dumps(version_manifest)
-with io.open("packOutput/version.manifest","w",encoding='utf-8') as f:
+with io.open("update/version/version.manifest","w",encoding='utf-8') as f:
 	f.write(unicode(json_str))
 
 #输出project.manifest文件
 json_str = json.dumps(project_manifest)
-with io.open("packOutput/project.manifest","w",encoding='utf-8') as f:
+with io.open("update/version/project.manifest","w",encoding='utf-8') as f:
 	f.write(unicode(json_str))
 
-#1.upload res and src to server
 
+dst=os.path.join(os.getcwd(),"update/files")
+for path in importList:
+	src=os.path.join(projectPath,path)
+	shutil.copytree(src,dst+"/"+path)
+
+uploadToFtp.upload(newDir)
+
+print "Finshed file uploading,begin removing local Dirs now."
+shutil.rmtree(newDir)
+# os.removedirs(newDir)
 
