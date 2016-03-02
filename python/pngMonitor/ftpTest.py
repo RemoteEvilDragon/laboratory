@@ -1,14 +1,7 @@
 #!/usr/bin/env python
 
-import time
-import ftplib
-import os
-import sys
+import platform
 
-server="27.126.181.90"
-username="athenking"
-password="freedom"
+os_type = platform.system()
 
-myFtp = ftplib.FTP(server,username,password)
-
-myFtp.cwd("pngLib")
+print os_type

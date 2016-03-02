@@ -2,7 +2,6 @@
 #-*- coding:utf-8 -*-
 import platform
 import time
-import gtk.gdk
 import ftplib
 import os
 import sys
@@ -18,6 +17,7 @@ def grab_screen():
 		im = ImageGrab.grab()
 		im.show()
 	elif os_type == "Linux":
+		import gtk.gdk
 		w = gtk.gdk.get_default_root_window()
 		sz = w.get_size()
 		pb = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB,False,8,sz[0],sz[1])
@@ -27,6 +27,8 @@ def grab_screen():
 			print "saved screenshot png successfully!"
 		else:
 			print "Unable to get screenshot png!"
+	elif os_type == "Darwin":
+		os.system("screencapture %s"%(pngname))
 
 def upload_to_server():
 	import socket
@@ -92,4 +94,5 @@ def run_forever():
 		grabOnce()
 		time.sleep(30*60)
 
+# grabOnce()
 run_forever()

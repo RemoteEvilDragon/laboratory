@@ -7,7 +7,6 @@ import SocketServer
 class MyTcpHandler(SocketServer.StreamRequestHandler):
 	def handle(self):
 		self.data = self.rfile.readline().strip()
-
 		self.wfile.write("Server_received.")
 
 HOST,PORT="0.0.0.0",12345
