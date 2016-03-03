@@ -82,6 +82,10 @@ def upload_to_ftpServer():
 	os.remove(pngname)
 	myFtp.quit()
 
+def upload_to_HttpServer():
+	global pngname
+	os.system("awatch %s"%(pngname))
+
 def grabOnce():
 	global pngname
 	pngname = "%s.png"%(time.strftime('%Y-%m-%d-%H-%M-%S',time.localtime(time.time())))
