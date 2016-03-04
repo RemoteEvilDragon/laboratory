@@ -42,15 +42,18 @@ def generateMd5(path,_dict):
 
 				key = fpath[len(projectPath)+1:]
 				# print key
-				_dict[key] = m.hexdigest()
+
+				v_dict = dict()
+				v_dict["md5"] = m.hexdigest()
+				_dict[key] = v_dict
 			elif os.path.isdir(fpath):
 				generateMd5(fpath,_dict)
 
 version_manifest = {
-	"packageUrl":"http://27.126.181.90/update/files/",
-	"remoteVersionUrl":"http://27.126.181.90/update/version/version.manifest",
-	"remoteManifestUrl":"http://27.126.181.90/update/version/project.manifest",
-	"version":"1.0.0",
+	"packageUrl":"http://27.126.181.90:10000/update/files/",
+	"remoteVersionUrl":"http://27.126.181.90:10000/update/version/version.manifest",
+	"remoteManifestUrl":"http://27.126.181.90:10000/update/version/project.manifest",
+	"version":"1.0.1",
 	"engineVersion":"QUICK-COCOS2DX-COMMUNITY-3.6"}
 
 project_manifest = dict()
@@ -77,14 +80,16 @@ with io.open("update/version/project.manifest","w",encoding='utf-8') as f:
 	f.write(unicode(json_str))
 
 
+#将project.manifest文件保存到本地工程目录
+shutil.copyfile("update/version/project.manifest",os.path.join(projectPath,"src/version/project.manifest"))
+
 dst=os.path.join(os.getcwd(),"update/files")
 for path in importList:
 	src=os.path.join(projectPath,path)
 	shutil.copytree(src,dst+"/"+path)
 
-uploadToFtp.upload(newDir)
+os.system("aupload %s"%(newDir))
 
-print "Finshed file uploading,begin removing local Dirs now."
+# print "Finshed file uploading,begin removing local Dirs now."
 shutil.rmtree(newDir)
-# os.removedirs(newDir)
 

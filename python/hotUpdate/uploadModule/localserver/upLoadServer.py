@@ -70,10 +70,7 @@ class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         else:
             f.write("<strong>Failed:</strong>")
         f.write(info)
-        
-        # if self.headers['referer'] is not None:
-        #     f.write("<br><a href=\"%s\">back</a>" % self.headers['referer'])
-
+        f.write("<br><a href=\"%s\">back</a>" % self.headers['referer'])
         f.write("<hr><small>Powerd By: bones7456, check new version at ")
         f.write("<a href=\"http://li2z.cn/?s=SimpleHTTPServerWithUpload\">")
         f.write("here</a>.</small></body>\n</html>\n")
@@ -88,7 +85,6 @@ class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             f.close()
         
     def deal_post_data(self):
-        # print self.headers
         boundary = self.headers.plisttext.split("=")[1]
         remainbytes = int(self.headers['content-length'])
         line = self.rfile.readline()
@@ -97,8 +93,7 @@ class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             return (False, "Content NOT begin with boundary")
         line = self.rfile.readline()
         remainbytes -= len(line)
-        # print line
-        fn = re.findall(r'Content-Disposition.*name=".*"; filename="(.*)"', line)
+        fn = re.findall(r'Content-Disposition.*name="file"; filename="(.*)"', line)
         if not fn:
             return (False, "Can't find out file name...")
         path = self.translate_path(self.path)
@@ -291,11 +286,9 @@ class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         })
 
 
-def run_server(HandlerClass = SimpleHTTPRequestHandler,
+def test(HandlerClass = SimpleHTTPRequestHandler,
          ServerClass = BaseHTTPServer.HTTPServer):
-    address = ('',10000)
-    httpd = ServerClass(address,HandlerClass)
-    httpd.serve_forever()
+    BaseHTTPServer.test(HandlerClass, ServerClass)
 
 if __name__ == '__main__':
-    run_server()
+    test()

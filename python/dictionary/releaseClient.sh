@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cp lookUpDicClient.py /usr/local/bin/lookupDic
+cp $1 /usr/local/bin/$2
 
-chmod +x /usr/local/bin/lookupDic
+chmod +x /usr/local/bin/$2
