@@ -100,8 +100,8 @@ class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         fn = os.path.join(path, fn[0])
         line = self.rfile.readline()
         remainbytes -= len(line)
-        line = self.rfile.readline()
-        remainbytes -= len(line)
+        # line = self.rfile.readline()
+        # remainbytes -= len(line)
         try:
             out = open(fn, 'wb')
         except IOError:
