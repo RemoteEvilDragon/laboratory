@@ -21,8 +21,8 @@ filepath = sys.path[0]
 from PTlib.utils import *
 
 
-is_Release_InHouse = False
-# is_Release_InHouse = True
+# is_Release_InHouse = False
+is_Release_InHouse = True
 
 # 首先读取配置文件
 if not is_Release_InHouse:
