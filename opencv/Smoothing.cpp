@@ -6,11 +6,6 @@
 #include <iostream>
 #include <vector>
 
-// #include <opencv2/imgproc/imgproc.hpp>
-// #include <opencv2/imgcodecs.hpp>
-// #include <opencv2/highgui/highgui.hpp>
-// #include <opencv2/features2d/features2d.hpp>
-
 #include <opencv2/imgproc.hpp>
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/highgui.hpp>
@@ -37,10 +32,12 @@ int display_dst( int delay );
  */
 int main( void )
 {
+  std::string mv("athen");
+
   namedWindow( window_name, WINDOW_AUTOSIZE );
 
   /// Load the source image
-  src = imread( "../data/lena.jpg", 1 );
+  src = imread( "data/lena.jpg", 1 );
 
   if( display_caption( "Original Image" ) != 0 ) { return 0; }
 
