@@ -1,0 +1,2 @@
+/usr/bin/ar cr libPtHttp.a  CMakeFiles/PtHttp.dir/HttpClientDef.cpp.o
+/usr/bin/ranlib libPtHttp.a

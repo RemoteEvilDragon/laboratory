@@ -1,6 +1,4 @@
-#define HAS_HTTP_CLIENT_LOG
-#include <boost/thread.hpp>
-#include "asynchttpclient.h"
+#include "HttpClientDef.h"
 
 boost::asio::io_service g_io_service;
 
@@ -61,11 +59,11 @@ void test_async()
 }
 
 
-int main()
-{
-    test_async();
-    return 0;
-}
+// int main()
+// {
+//     test_async();
+//     return 0;
+// }
 
 
 
