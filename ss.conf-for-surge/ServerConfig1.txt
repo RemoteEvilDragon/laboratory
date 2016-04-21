@@ -1,0 +1,6 @@
+[Proxy]
+💊DIRECT = direct
+🇭🇰HK athen= custom,27.126.181.90,61234,aes-256-cfb,my_name_athen,https://github.com/R0uter/ss.conf-for-surge/raw/master/ss.module
+
+[Proxy Group]
+Proxy = select,💊DIRECT,🇭🇰HK athen
